@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Hiển thị mật khẩu bằng jQuery</title>
+
+<!-- Font Awesome để có icon con mắt -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- jQuery Online CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Open+Sans:300,400|Oswald:400,700');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+.password-show-card {
+  width: 320px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 100px auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input-control {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.password-show {
+  font-size: 20px;
+  color: #555;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.password-show:hover {
+  color: #000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="password-show-card">
+  <input type="password" class="input-control" placeholder="Nhập mật khẩu của bạn...">
+  <i class="fa fa-eye password-show"></i>
+</div>
+
+<script>
+$(document).ready(function(){
+  $(".password-show").click(function(){
+    var input = $(".input-control");
+    var icon = $(this);
+
+    if (input.attr("type") === "password") {
+      input.attr("type", "text");
+      icon.removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+      input.attr("type", "password");
+      icon.removeClass("fa-eye-slash").addClass("fa-eye");
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+

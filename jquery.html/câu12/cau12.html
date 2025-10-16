@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thông tin Passport và Credit Card</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900|Open+Sans:300,400|Oswald:400,700');
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Lato', sans-serif;
+  padding: 30px;
+  background-color: #f9f9f9;
+}
+h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.checkbox-card {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.passport-box {
+  display: none;
+  margin-top: 10px;
+}
+.apply-box {
+  display: none;
+  margin-top: 10px;
+}
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+</style>
+</head>
+
+<body>
+<h4>ĐĂNG KÝ THÔNG TIN NGƯỜI DÙNG</h4>
+
+<div class="checkbox-card">
+  <p>Bạn có Passport không?</p>
+  <label><input type="radio" name="passport" value="yes"> Có</label>
+  <label><input type="radio" name="passport" value="no"> Không</label>
+
+  <div class="passport-box">
+    <p>Nhập số Passport:</p>
+    <input type="text" id="passportNumber" placeholder="Nhập số Passport của bạn...">
+  </div>
+</div>
+
+<div class="checkbox-card">
+  <p>Bạn có Credit Card không?</p>
+  <label><input type="radio" name="credit" value="yes"> Có</label>
+  <label><input type="radio" name="credit" value="no"> Không</label>
+
+  <div class="apply-box">
+    <p>Nhập số Credit Card:</p>
+    <input type="text" id="creditNumber" placeholder="Nhập số thẻ Credit Card của bạn...">
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  $('input[name="passport"]').on('change', function() {
+    var value = $(this).val();
+    if (value === 'yes') {
+      $('.passport-box').show();
+    } else {
+      $('.passport-box').hide();
+    }
+  });
+
+  $('input[name="credit"]').on('change', function() {
+    var value = $(this).val();
+    if (value === 'yes') {
+      $('.apply-box').show();
+    } else {
+      $('.apply-box').hide();
+    }
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Form Validation Exercise</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+  body { font-family: Arial; margin: 30px; }
+  h2 { text-align: center; color: green; }
+  form { width: 400px; margin: 0 auto; }
+  label { display: block; margin-top: 10px; }
+  input[type="text"], input[type="email"], select { width: 100%; padding: 5px; }
+  .buttons { margin-top: 15px; text-align: center; }
+  button { padding: 6px 12px; margin: 5px; }
+</style>
+</head>
+<body>
+
+<h2>Personal Information</h2>
+
+<form id="infoForm">
+  <label>Enter name*:
+    <input type="text" id="name">
+  </label>
+
+  <label>Sex*:
+    <input type="radio" name="sex" value="Male"> Male
+    <input type="radio" name="sex" value="Female"> Female
+  </label>
+
+  <label>Enter email address*:
+    <input type="text" id="email">
+  </label>
+
+  <label>Enter birthday (MM/DD/YYYY)*:
+    <input type="text" id="birthday">
+  </label>
+
+  <label>Enter street address (line 1)*:
+    <input type="text" id="address">
+  </label>
+
+  <label>Enter city*:
+    <input type="text" id="city">
+  </label>
+
+  <label>Select a region*:
+    <select id="region">
+      <option value="">--Select--</option>
+      <option>North</option>
+      <option>South</option>
+      <option>East</option>
+      <option>West</option>
+    </select>
+  </label>
+
+  <label>Enter 5-digit ZIP code*:
+    <input type="text" id="zip">
+  </label>
+
+  <div class="buttons">
+    <button type="button" id="finish">Finished</button>
+    <button type="button" id="clear">Clear</button>
+  </div>
+</form>
+
+<script>
+$(document).ready(function() {
+
+  $("#clear").click(function() {
+    $("#infoForm")[0].reset();
+  });
+
+  $("#finish").click(function() {
+    var name = $("#name").val().trim();
+    var sex = $("input[name='sex']:checked").val();
+    var email = $("#email").val().trim();
+    var birthday = $("#birthday").val().trim();
+    var address = $("#address").val().trim();
+    var city = $("#city").val().trim();
+    var region = $("#region").val();
+    var zip = $("#zip").val().trim();
+
+    if (name === "" || !sex || email === "" || birthday === "" || address === "" || city === "" || region === "" || zip === "") {
+      alert("Vui lòng nhập đầy đủ các trường có dấu *");
+      return;
+    }
+
+    var emailPattern = /^[A-Za-z0-9]+(\.[A-Za-z0-9]+)?@[A-Za-z0-9]+(\.[A-Za-z]{2,})+$/;
+    if (!emailPattern.test(email)) {
+      alert("Email không hợp lệ!");
+      return;
+    }
+
+    var datePattern = /^(0[1-9]|1[0-2])[\/\-](0[1-9]|[12][0-9]|3[01])[\/\-](\d{4})$/;
+    if (!datePattern.test(birthday)) {
+      alert("Ngày sinh không đúng định dạng (MM/DD/YYYY hoặc MM-DD-YYYY)!");
+      return;
+    }
+    var parts = birthday.split(/\/|-/);
+    var month = parseInt(parts[0]);
+    var day = parseInt(parts[1]);
+    var year = parseInt(parts[2]);
+    var currentYear = new Date().getFullYear();
+    if (month < 1 || month > 12 || year >= currentYear) {
+      alert("Ngày sinh không hợp lệ!");
+      return;
+    }
+
+    if (!/^\d{5}$/.test(zip)) {
+      alert("ZIP code phải gồm đúng 5 chữ số!");
+      return;
+    }
+
+    alert("Dữ liệu hợp lệ! Gửi thành công!");
+  });
+
+});
+</script>
+
+</body>
+</html>
