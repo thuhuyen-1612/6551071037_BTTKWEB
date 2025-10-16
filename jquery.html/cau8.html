@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Máy tính đơn giản</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+  body { font-family: Arial; margin: 40px; font-size: 18px; }
+  input[type="number"], input[type="text"] { width: 80px; text-align: center; }
+  button { padding: 7px 30px; margin: 7px; }
+</style>
+</head>
+<body>
+<h2>Máy tính đơn giản</h2>
+<input type="number" id="num1" value="12">
+<button class="op" data-op="+">+</button>
+<button class="op" data-op="-">-</button>
+<button class="op" data-op="*">x</button>
+<button class="op" data-op="/">/</button>
+<button class="op" data-op="^">^</button>
+<input type="number" id="num2" value="14">
+<span>=</span>
+<input type="text" id="result" readonly>
+<script>
+$(document).ready(function() {
+  $(".op").click(function() {
+    var n1 = parseFloat($("#num1").val());
+    var n2 = parseFloat($("#num2").val());
+    var op = $(this).data("op");
+    var res;
+    if (op === "+") res = n1 + n2;
+    else if (op === "-") res = n1 - n2;
+    else if (op === "*") res = n1 * n2;
+    else if (op === "/") res = n2 !== 0 ? n1 / n2 : "Lỗi";
+    else if (op === "^") res = Math.pow(n1, n2);
+    else res = "Không hợp lệ";
+    $("#result").val(res);
+  });
+});
+</script>
+
+</body>
+</html>
